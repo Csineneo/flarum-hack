@@ -1,13 +1,13 @@
-### 用於 [vivaldi.club](https://vivaldi.club) 的一些修改
+## 用於 [vivaldi.club](https://vivaldi.club) 的一些 hack
 
-## 需求
+### 需求
 
 - Flarum v0.1.0-beta.8 及更新版本
 - csineneo/lang-traditional-chinese
 - csineneo/lang-simplified-chinese
 - csineneo/vivaldi-club-bbcode
 
-## 特性
+### 特性
 
 - 自動識別用戶端語言並選取適合的介面語言
 - 簡繁自動轉換
@@ -28,6 +28,6 @@
 - 自定義 [BBCode](https://github.com/Csineneo/vivaldi-club-bbcode)
 - 支援 vivaldi:// scheme
 
-## 演示站點
+### 演示站點
 
 - [Vivaldi Club](https://vivaldi.club)
