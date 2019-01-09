@@ -7,7 +7,7 @@
 - csineneo/lang-simplified-chinese
 - csineneo/vivaldi-club-bbcode
 
-### 特性
+### HACK
 
 - 自動識別用戶端語言並選取適合的介面語言
 - 簡繁自動轉換
