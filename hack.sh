@@ -68,6 +68,30 @@ sed -i "/new SchemeList/a\\\t\\t\$this->allowedSchemes[] = 'vivaldi';" \
 sed -i 's#ftp|https#ftp|vivaldi|https#g' \
   vendor/s9e/text-formatter/src/Bundles/Fatdown.php
 
+# 顯示發帖人 UA
+# SQL: ALTER TABLE tbl_posts ADD user_agent varchar(255);
+sed -i 's#\$ipAddress)#\$ipAddress\, string \$userAgent)#; /->ipAddress/a\\t\t\t\t$this->userAgent = $userAgent;' \
+	vendor/flarum/core/src/Discussion/Command/StartDiscussion.php
+	sed -i -r '/new PostReply/s/(ipAddress)/\1, $userAgent/; /->ipAddress/a\\t\t\t\t$userAgent = $command->userAgent;' \
+	vendor/flarum/core/src/Discussion/Command/StartDiscussionHandler.php
+sed -i -e '/StartDiscussion/s/)$/, \$userAgent)/' \
+	-e "/ipAddress =/a\\\t\t\t\t\$userAgent = array_get(\$request->getServerParams(), 'HTTP_USER_AGENT', '');" \
+	vendor/flarum/core/src/Api/Controller/CreateDiscussionController.php
+sed -i -r 's#(ipAddress = null)#\1, string $userAgent#; /->ipAddress/a\\t\t\t\t$this->userAgent = $userAgent;' \
+	vendor/flarum/core/src/Post/Command/PostReply.php
+sed -i -r 's#(ipAddress)$#\1,#; /ipAddress/a\\t\t\t\t\t\t$command->userAgent' \
+	vendor/flarum/core/src/Post/Command/PostReplyHandler.php
+sed -i -e 's#ipAddress)#ipAddress, $userAgent)#' \
+	-e "/ADDR/a\\\t\t\t\t\$userAgent = array_get(\$request->getServerParams(), 'HTTP_USER_AGENT', '');" \
+	vendor/flarum/core/src/Api/Controller/CreatePostController.php
+sed -i -e '/ip_address/a\\t\t\t\t$post->user_agent = $userAgent;' \
+	-e 's#ipAddress)#ipAddress, $userAgent)#' \
+	vendor/flarum/core/src/Post/CommentPost.php
+sed -i "/contentHtml/a\\\t\t\t\t\t\t\$attributes['userAgent'] = \$post->user_agent;" \
+	vendor/flarum/core/src/Api/Serializer/PostSerializer.php
+sed -i -r 's#(Post-footer"},)#\1m("small",null,e.props.post.data.attributes.userAgent),#' \
+	vendor/flarum/core/js/dist/forum.js
+
 # URL 美化，移除 slug
 sed -i -r 's#(discussion->id).*$#\1#' \
   vendor/flarum/core/views/frontend/content/index.blade.php
