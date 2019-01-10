@@ -15,20 +15,17 @@ echo "
             $lang = strtolower($matches[1]);
         }
         switch ($lang) {
-            case 'en':
-            case 'en-us':
-                return 'en';
-                break;
-            case 'zh':
             case 'zh-tw':
+            case 'zh-hk':
+            case 'zh':
                 return 'zh-hant';
                 break;
             case 'zh-cn':
+            case 'zh-sg':
                 return 'zh-hans';
                 break;
             default:
-                $repo = $this->app->make(SettingsRepositoryInterface::class);
-                return $repo->get('default_locale', 'en');
+								return 'en';
         }
     }
 }" >> vendor/flarum/core/src/Locale/LocaleServiceProvider.php
@@ -36,7 +33,8 @@ echo "
 # 簡繁自動轉換
 # https://vivaldi.club/d/793/10
 mv vendor/flarum/core/src/Api/JsonApiResponse.php vendor/flarum/core/src/Api/JsonApiResponse.php.ori
-wget -qO vendor/flarum/core/src/Api/JsonApiResponse.php "https://raw.githubusercontent.com/ProjectFishpond/pfp-docker-config/master/sc/hack/JsonApiResponse.php"
+wget -qO vendor/flarum/core/src/Api/JsonApiResponse.php "https://raw.githubusercontent.com/Csineneo/flarum-hack/master/JsonApiResponse.php"
+
 
 # 允許註冊中文名
 sed -i "s#a-z0-9_-#-_a-z0-9\\\x7f-\\\xff#" \
