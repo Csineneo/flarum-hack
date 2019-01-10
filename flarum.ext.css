@@ -57,38 +57,39 @@
   src: local('Raleway'), local('Raleway-Regular'), url(https://fonts.gstatic.com/s/raleway/v12/1Ptug8zYS_SKggPNyC0IT4ttDfA.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
-/* System Latin */
-@font-face {
-  font-family: 'System Latin';
-  font-style: normal;
-  font-weight: 400;
-  src:  local("Raleway"), local(".HelveticaNeueDeskInterface-Light"), local(".SFNSText-Light"), local(".LucidaGrandeUI"), local("Segoe UI Light"),
-        local("Ubuntu Light"), local("Roboto-Light"), local("DroidSans"), local("Fira Sans"), local("Cantarell"), local("Oxygen");
-}
-/* Monospace */
-#font-face {
-  font-family: 'System Mono';
-  font-style: normal;
-  font-weight: 400;
-  src: local("Source Code Pro"), local("SFMono-Light"), local("Menlo"), local("Consolas"), local("Courier New");
-}
 
-/* animations */
-@-webkit-keyframes fa-spin {
-	0% { transform: rotate(0deg); }
-	100% { transform: rotate(359deg); }
-}
+* { tab-size: 4; }
+:target { background-color: #e3f5ff; }
+::selection { color: #f3f; }
+body { font-family: Raleway, 'System Latin'; font-size: 15px; line-height: 1.5em; text-rendering: optimizeLegibility; -moz-osx-font-smoothing: grayscale; -webkit-font-smoothing: subpixel-antialiased; -webkit-tap-highlight-color: rgba(158, 217, 248, .3); }
+code { white-space: pre-wrap; font-family: 'Source Code Pro', 'System Mono'; }
+li.item-joined, li.item-lastSeen { display: block; line-height: 1.7; }
+li.item-lastSeen .online { display: inline-block; }
+input.FormControl { color: #998f66 !important; }
+small { color: transparent; font-size: 7px; line-height: 1em; width: 100%; margin-top: 20px; word-break: break-all; clear: both; display: block; overflow: hidden; text-overflow: ellipsis; white-space: pre-wrap; }
+small:hover { color: #f3f; }
+#footer { margin: 1em auto; padding-top: 3em; text-align: center; color: #7c7c7c; width: 61.8%;}
+.viv-icon { float: right; }
+.tofu-snapshot { margin-bottom: 2em; padding: 12px 16px; color: #ad6c00; background: #fff2ae; line-height: 1.5; border-radius: 4px; }
+.Badge--group--10 { display: none !important; }
+.item-terminalPost { font-size: 13px; }
+.item-discussion-views { width: 33px; margin-right: -70px; }
+.item-discussion-views::before { margin-left: -22px; }
+.Post { padding-bottom: 3px; }
+.Post-footer { margin-bottom: 0; }
+.Post-mentionedBy-preview { width: 640px !important; }
+.Search-input input { width: 125px; }
+.TagsPage .item-flagrow-ad { display: none !important; }
 
-@keyframes fa-spin {
-	0% { transform: rotate(0deg); }
-	100% { transform: rotate(359deg); }
-}
+/* Dark Mode */
+body.dark .DiscussionListItem-title { color: #ccc; }
 
 /* Tag Icon */
 .TagHero .Hero-title:before, .TagLabel > span:before
 {
-  display: inline-block;
+  height: 22px;
   margin-right: 0.3em;
+  display: inline-block;
   font-family: FAS;
   font-size: 85%;
   text-rendering: auto;
@@ -99,6 +100,7 @@
 .TagLinkButton > .TagIcon { width: 18px !important; height: 18px !important; }
 .TagLinkButton > span:before {
   color: #fff;
+  height: 22px;
   display: block;
   font-family: FAS;
   font-size: 85%;
@@ -172,51 +174,16 @@
 .TagLabel[style*='rgb(135, 135, 135)'] > span:before,
 .TagLinkButton span[style*='rgb(135, 135, 135)']:before
 { content: "\f0c3"; }
-/* catsoft */
-.TagHero[style*='rgb(255, 204, 221)'] .Hero-title:before,
-.TagLabel[style*='rgb(255, 204, 221)'] > span:before,
-.TagLinkButton span[style*='rgb(255, 204, 221)']:before
-{ content: "\f25e"; }
+/* contributor */
+.TagHero[style*='rgb(255, 136, 153)'] .Hero-title:before,
+.TagLabel[style*='rgb(255, 136, 153)'] > span:before,
+.TagLinkButton span[style*='rgb(255, 136, 153)']:before
+{ content: "\f4c0"; }
 
-
-/* flarum */
-* { tab-size: 4; }
-body { font-family: Raleway, 'System Latin'; }
-code { white-space: pre-wrap; font-family: Source Code Pro, Menlo, Monospace; }
-#header { font-weight: bold; }
-input.FormControl { color: #998f66 !important; }
-.Search-input input { width: 125px; }
-.Form--centered .FormControl[type="password"] { text-align: center; }
-.Post { padding-bottom: 0; }
-.Post-body a { border-bottom: none; }
-.Post-footer { margin-bottom: 0; }
-.Badge--group--transparent { border: none; box-shadow: none; }
-.item-group10 { display: none !important; }
+/* xts badge */
+@-webkit-keyframes fa-spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(359deg); } }
+@keyframes fa-spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(359deg); } }
 i.fa-spinner { -webkit-animation: fa-spin 1s infinite steps(8); animation: fa-spin 1s infinite steps(8); }
-li.item-joined, li.item-lastSeen { display: block; line-height: 1.7; }
-li.item-lastSeen .online { display: inline-block; }
-
-/* extension */
-div[data-s9e-mediaembed="youku"] { max-width: 720px; }
-.RecipientsLabel { margin-right: 7px; }
-.RecipientLabel:not(:last-child) { border-right: none; }
-.RecipientsInput { width: 94%; }
-.PollView { padding: 1em; border: #ddd 1px solid; }
-.TagsPage .item-flagrow-ad { display: none !important; }
-.Flagrow-Saved-Message { margin-bottom: 2em; }
-.Post-upvote::after { width: 50px; height: 50px; top: -20%; left: 47%; }
-.Post-downvote::after { width: 50px; height: 50px; top: -20%; left: 72%; }
-.Pages-page .container { max-width: 77%; }
-#footer { margin: 1em auto; padding-top: 3em; text-align: center; color: #7c7c7c; width: 61.8%;}
-.footercontent { background: rgba(255, 255, 255, .9); box-shadow: 0 -3px 5px rgba(128, 128, 128, .6); }
-.item-flagrow-ad li ol { padding: 0; }
-.tofu-snapshot { margin-bottom: 2em; padding: 12px 16px; color: #ad6c00; background: #fff2ae; line-height: 1.5; border-radius: 4px; }
-
-/* tofu mods */
-small { color: transparent; font-size: 7px; line-height: 1em; width: 100%; margin-top: 20px; word-break: break-all; clear: both; display: block; overflow: hidden; text-overflow: ellipsis; white-space: pre-wrap; }
-small:hover { color: #f3f; }
-.viv-icon { float: right; }
-.SignatureWrapper { padding: 10px 0; color: #aaa; }
 
 /* mobile */
 @media(max-width:1000px) {
