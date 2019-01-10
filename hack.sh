@@ -61,6 +61,10 @@ sed -i "/new SchemeList/a\\\t\\t\$this->allowedSchemes[] = 'vivaldi';" \
 sed -i 's#ftp|https#ftp|vivaldi|https#g' \
   vendor/s9e/text-formatter/src/Bundles/Fatdown.php
 
+# 透過 Vivaldi PO 文享專屬 banner
+sed -i -r "s#(t.stopPropagation\(\)}}\)\))#\1,/Vivaldi/.test(t.data.attributes.userAgent)?m('img',{className:'viv-icon',src:'https://awk.tw/assets/images/vivaldi_ua.png'}):''#" \
+	vendor/flarum/core/js/dist/forum.js
+
 # 顯示發帖人 UA
 # SQL: ALTER TABLE tbl_posts ADD user_agent varchar(255);
 sed -i 's#\$ipAddress)#\$ipAddress\, string \$userAgent)#; /->ipAddress/a\\t\t\t\t$this->userAgent = $userAgent;' \

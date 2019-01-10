@@ -28,6 +28,7 @@
 - 啟用 flarum/pusher 後不隱藏刷新按鈕
 - 自定義 [BBCode](https://github.com/Csineneo/vivaldi-club-bbcode)
 - 支援 vivaldi:// scheme
+- 透過 Vivaldi PO 文享專屬 banner
 - 顯示發帖人 UA
 
 ### 演示站點
