@@ -18,23 +18,20 @@ class JsonApiResponse extends JsonResponse {
       case "zh-cn":
       case "zh-sg":
         $ccconfig = opencc_open("t2s.json");
-        $cctext = opencc_convert($document->jsonSerialize(), $ccconfig);
-        opencc_close($ccconfig);
         break;
       case "zh-hk":
         $ccconfig = opencc_open("s2hk.json");
-        $cctext = opencc_convert($document->jsonSerialize(), $ccconfig);
-        opencc_close($ccconfig);
         break;
       case "zh-tw":
       case "zh":
         $ccconfig = opencc_open("s2tw.json");
-        $cctext = opencc_convert($document->jsonSerialize(), $ccconfig);
-        opencc_close($ccconfig);
         break;
       default:
-        $cctext = $document->jsonSerialize();
+        $ccconfig = "";
     }
-    parent::__construct($cctext, $status, $headers, $encodingOptions);
+
+    $cctext = opencc_convert(json_encode($document->jsonSerialize(), 256), $ccconfig);
+    opencc_close($ccconfig);
+    $ccconfig ? parent::__construct(json_decode($cctext), $status, $headers, $encodingOptions) : parent::__construct($document->jsonSerialize(), $status, $headers, $encodingOptions);
   }
 }
