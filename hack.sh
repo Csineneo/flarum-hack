@@ -86,7 +86,7 @@ sed -i -e '/ip_address/a\\t\t\t\t$post->user_agent = $userAgent;' \
 	vendor/flarum/core/src/Post/CommentPost.php
 sed -i "/contentHtml/a\\\t\t\t\t\t\t\$attributes['userAgent'] = \$post->user_agent;" \
 	vendor/flarum/core/src/Api/Serializer/PostSerializer.php
-sed -i -r 's#(Post-footer"},)#\1m("small",{className:"ua"},e.props.post.data.attributes.userAgent),#' \
+sed -i -r 's#(footerItems\(\).toArray\(\)\)\))#\1,m("small",{className:"ua"},e.props.post.data.attributes.userAgent\)#' \
 	vendor/flarum/core/js/dist/forum.js
 
 # URL 美化，移除 slug
