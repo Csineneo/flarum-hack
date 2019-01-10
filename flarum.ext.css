@@ -1,0 +1,227 @@
+/* webfonts */
+/* Font Awesome */
+@font-face {
+  font-family: "FAB";
+  font-style: normal;
+  font-weight: normal;
+  src: url(../fonts/fa-brands-400.eot);
+  src: url(../fonts/fa-brands-400.eot?#iefix) format("embedded-opentype"),
+       url(../fonts/fa-brands-400.woff2) format("woff2"),
+       url(../fonts/fa-brands-400.woff) format("woff"),
+       url(../fonts/fa-brands-400.ttf) format("truetype"),
+       url(../fonts/fa-brands-400.svg#fontawesome) format("svg")
+}
+@font-face {
+  font-family: "FAS";
+  font-style: normal;
+  font-weight: 900;
+  src: url(../fonts/fa-solid-900.eot);
+  src: url(../fonts/fa-solid-900.eot?#iefix) format("embedded-opentype"),
+       url(../fonts/fa-solid-900.woff2) format("woff2"),
+       url(../fonts/fa-solid-900.woff) format("woff"),
+       url(../fonts/fa-solid-900.ttf) format("truetype"),
+       url(../fonts/fa-solid-900.svg#fontawesome) format("svg")
+}
+.fab { font-family: "FAB"; }
+.fa, .fas { font-family: "FAS"; font-weight: 900; }
+
+/* latin-ext */
+@font-face {
+  font-family: 'Source Code Pro';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Source Code Pro'), local('SourceCodePro-Regular'), url(https://fonts.gstatic.com/s/sourcecodepro/v8/HI_SiYsKILxRpg3hIP6sJ7fM7PqlM-vWnsUnxlC9.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Source Code Pro';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Source Code Pro'), local('SourceCodePro-Regular'), url(https://fonts.gstatic.com/s/sourcecodepro/v8/HI_SiYsKILxRpg3hIP6sJ7fM7PqlPevWnsUnxg.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Raleway'), local('Raleway-Regular'), url(https://fonts.gstatic.com/s/raleway/v12/1Ptug8zYS_SKggPNyCMIT4ttDfCmxA.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Raleway'), local('Raleway-Regular'), url(https://fonts.gstatic.com/s/raleway/v12/1Ptug8zYS_SKggPNyC0IT4ttDfA.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* System Latin */
+@font-face {
+  font-family: 'System Latin';
+  font-style: normal;
+  font-weight: 400;
+  src:  local("Raleway"), local(".HelveticaNeueDeskInterface-Light"), local(".SFNSText-Light"), local(".LucidaGrandeUI"), local("Segoe UI Light"),
+        local("Ubuntu Light"), local("Roboto-Light"), local("DroidSans"), local("Fira Sans"), local("Cantarell"), local("Oxygen");
+}
+/* Monospace */
+#font-face {
+  font-family: 'System Mono';
+  font-style: normal;
+  font-weight: 400;
+  src: local("Source Code Pro"), local("SFMono-Light"), local("Menlo"), local("Consolas"), local("Courier New");
+}
+
+/* animations */
+@-webkit-keyframes fa-spin {
+	0% { transform: rotate(0deg); }
+	100% { transform: rotate(359deg); }
+}
+
+@keyframes fa-spin {
+	0% { transform: rotate(0deg); }
+	100% { transform: rotate(359deg); }
+}
+
+/* Tag Icon */
+.TagHero .Hero-title:before, .TagLabel > span:before
+{
+  display: inline-block;
+  margin-right: 0.3em;
+  font-family: FAS;
+  font-size: 85%;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.TagLinkButton > .TagIcon { width: 18px !important; height: 18px !important; }
+.TagLinkButton > span:before {
+  color: #fff;
+  display: block;
+  font-family: FAS;
+  font-size: 85%;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* vivaldi */
+.TagHero[style*='rgb(203, 27, 69)'] .Hero-title:before,
+.TagLabel[style*='rgb(203, 27, 69)'] > span:before,
+.TagLinkButton span[style*='rgb(203, 27, 69)']:before
+{ content: "\f004"; }
+/* browser */
+.TagHero[style*='rgb(88, 178, 220)'] .Hero-title:before,
+.TagLabel[style*='rgb(88, 178, 220)'] > span:before,
+.TagLinkButton span[style*='rgb(88, 178, 220)']:before
+{ content: "\f268"; font-family: FAB; }
+/* opera */
+.TagHero[style*='rgb(255, 75, 75)'] .Hero-title:before,
+.TagLabel[style*='rgb(255, 75, 75)'] > span:before,
+.TagLinkButton span[style*='rgb(255, 75, 75)']:before
+{ content: "\f26a"; font-family: FAB; }
+/* flarum*/
+.TagHero[style*='rgb(231, 103, 46)'] .Hero-title:before,
+.TagLabel[style*='rgb(231, 103, 46)'] > span:before,
+.TagLinkButton span[style*='rgb(231, 103, 46)']:before
+{ content: "\f120"; }
+/* robot */
+.TagHero[style*='rgb(178, 143, 206)'] .Hero-title:before,
+.TagLabel[style*='rgb(178, 143, 206)'] > span:before,
+.TagLinkButton span[style*='rgb(178, 143, 206)']:before
+{ content: "\f17b"; font-family: FAB; }
+/* inner */
+.TagHero[style*='rgb(67, 67, 67)'] .Hero-title:before,
+.TagLabel[style*='rgb(67, 67, 67)'] > span:before,
+.TagLinkButton span[style*='rgb(67, 67, 67)']:before
+{ content: "\f21b"; }
+/* pool */
+.TagHero[style*='rgb(102, 186, 183)'] .Hero-title:before,
+.TagLabel[style*='rgb(102, 186, 183)'] > span:before,
+.TagLinkButton span[style*='rgb(102, 186, 183)']:before
+{ content: "\f0f4"; }
+/* share  */
+.TagHero[style*='rgb(241, 124, 103)'] .Hero-title:before,
+.TagLabel[style*='rgb(241, 124, 103)'] > span:before,
+.TagLinkButton span[style*='rgb(241, 124, 103)']:before
+{ content: "\f06b"; }
+/* help */
+.TagHero[style*='rgb(202, 122, 44)'] .Hero-title:before,
+.TagLabel[style*='rgb(202, 122, 44)'] > span:before,
+.TagLinkButton span[style*='rgb(202, 122, 44)']:before
+{ content: "\f059"; }
+/* hardware */
+.TagHero[style*='rgb(134, 193, 102)'] .Hero-title:before,
+.TagLabel[style*='rgb(134, 193, 102)'] > span:before,
+.TagLinkButton span[style*='rgb(134, 193, 102)']:before
+{ content: "\f108"; }
+/* software */
+.TagHero[style*='rgb(93, 172, 129)'] .Hero-title:before,
+.TagLabel[style*='rgb(93, 172, 129)'] > span:before,
+.TagLinkButton span[style*='rgb(93, 172, 129)']:before
+{ content: "\f085"; }
+/* xyz */
+.TagHero[style*='rgb(225, 107, 140)'] .Hero-title:before,
+.TagLabel[style*='rgb(225, 107, 140)'] > span:before,
+.TagLinkButton span[style*='rgb(225, 107, 140)']:before
+{ content: "\f0a1"; }
+/* sandbox */
+.TagHero[style*='rgb(135, 135, 135)'] .Hero-title:before,
+.TagLabel[style*='rgb(135, 135, 135)'] > span:before,
+.TagLinkButton span[style*='rgb(135, 135, 135)']:before
+{ content: "\f0c3"; }
+/* catsoft */
+.TagHero[style*='rgb(255, 204, 221)'] .Hero-title:before,
+.TagLabel[style*='rgb(255, 204, 221)'] > span:before,
+.TagLinkButton span[style*='rgb(255, 204, 221)']:before
+{ content: "\f25e"; }
+
+
+/* flarum */
+* { tab-size: 4; }
+body { font-family: Raleway, 'System Latin'; }
+code { white-space: pre-wrap; font-family: Source Code Pro, Menlo, Monospace; }
+#header { font-weight: bold; }
+input.FormControl { color: #998f66 !important; }
+.Search-input input { width: 125px; }
+.Form--centered .FormControl[type="password"] { text-align: center; }
+.Post { padding-bottom: 0; }
+.Post-body a { border-bottom: none; }
+.Post-footer { margin-bottom: 0; }
+.Badge--group--transparent { border: none; box-shadow: none; }
+.item-group10 { display: none !important; }
+i.fa-spinner { -webkit-animation: fa-spin 1s infinite steps(8); animation: fa-spin 1s infinite steps(8); }
+li.item-joined, li.item-lastSeen { display: block; line-height: 1.7; }
+li.item-lastSeen .online { display: inline-block; }
+
+/* extension */
+div[data-s9e-mediaembed="youku"] { max-width: 720px; }
+.RecipientsLabel { margin-right: 7px; }
+.RecipientLabel:not(:last-child) { border-right: none; }
+.RecipientsInput { width: 94%; }
+.PollView { padding: 1em; border: #ddd 1px solid; }
+.TagsPage .item-flagrow-ad { display: none !important; }
+.Flagrow-Saved-Message { margin-bottom: 2em; }
+.Post-upvote::after { width: 50px; height: 50px; top: -20%; left: 47%; }
+.Post-downvote::after { width: 50px; height: 50px; top: -20%; left: 72%; }
+.Pages-page .container { max-width: 77%; }
+#footer { margin: 1em auto; padding-top: 3em; text-align: center; color: #7c7c7c; width: 61.8%;}
+.footercontent { background: rgba(255, 255, 255, .9); box-shadow: 0 -3px 5px rgba(128, 128, 128, .6); }
+.item-flagrow-ad li ol { padding: 0; }
+.tofu-snapshot { margin-bottom: 2em; padding: 12px 16px; color: #ad6c00; background: #fff2ae; line-height: 1.5; border-radius: 4px; }
+
+/* tofu mods */
+small { color: transparent; font-size: 7px; line-height: 1em; width: 100%; margin-top: 20px; word-break: break-all; clear: both; display: block; overflow: hidden; text-overflow: ellipsis; white-space: pre-wrap; }
+small:hover { color: #f3f; }
+.viv-icon { float: right; }
+.SignatureWrapper { padding: 10px 0; color: #aaa; }
+
+/* mobile */
+@media(max-width:1000px) {
+	[class^=item-group], .viv-icon, .IndexPage-nav a img, .item-onlineUsers, .item-flagrow-ad { display: none !important; }
+	li.item-session { padding-left: 12px; }
+	#footer { width: 100%; }
+	.item-discussion-views { right: 90px; }
+}

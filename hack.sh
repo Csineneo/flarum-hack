@@ -1,9 +1,5 @@
 #! /bin/bash
 
-composer require csineneo/lang-traditional-chinese
-composer require csineneo/lang-simplified-chinese
-composer require csineneo/vivaldi-club-bbcode
-
 # 用戶端語言識別
 sed -i '/private function getDefaultLocale/, $d' \
   vendor/flarum/core/src/Locale/LocaleServiceProvider.php
@@ -117,13 +113,9 @@ sed -i "s#-2592e6#-864e5#; s#D MMM#LLLL#; s#MMM 'YY#LLLL#" \
   vendor/flarum/core/js/dist/forum.js
 
 # 使用中文數位記法
-sed -i 's#t>=1e3#t>=1e4#; s#(t\/1e3)#(t/1e4)#' \
+sed -i 's#t>=1e3#t>=1e4#; s#(t\/1e3)#(t/1e4)#; s#kilo_text#ten_kilo_text#' \
   vendor/flarum/core/js/dist/admin.js \
   vendor/flarum/core/js/dist/forum.js
-sed -i -r 's#(kilo_text: )千#\1萬#' \
-  vendor/csineneo/lang-traditional-chinese/locale/core.yml
-sed -i -r 's#(kilo_text: )千#\1万#' \
-  vendor/csineneo/lang-simplified-chinese/locale/core.yml
 
 # 首頁節點列表不顯示次節點
 sed -i 's#o.splice(0,3).forEach(s),##' \
@@ -132,3 +124,7 @@ sed -i 's#o.splice(0,3).forEach(s),##' \
 # 啟用 Pusher 後不隱藏刷新按鈕
 sed -i 's#Object(o.extend)(p.a.prototype,"actionItems",function(e){e.remove("refresh")}),##' \
   vendor/flarum/pusher/js/dist/forum.js
+
+composer require csineneo/lang-traditional-chinese
+composer require csineneo/lang-simplified-chinese
+composer require csineneo/vivaldi-club-bbcode
