@@ -62,7 +62,7 @@ sed -i 's#ftp|https#ftp|vivaldi|https#g' \
   vendor/s9e/text-formatter/src/Bundles/Fatdown.php
 
 # 透過 Vivaldi PO 文享專屬 banner
-sed -i -r "s#(t.stopPropagation\(\)}}\)\))#\1,/Vivaldi/.test(t.data.attributes.userAgent)?m('img',{className:'viv-icon',src:'https://awk.tw/assets/images/vivaldi_ua.png'}):''#" \
+sed -i -r "s#(t.stopPropagation\(\)}}\)\))#\1,/Vivaldi/.test(t.data.attributes.userAgent)?m('img',{className:'viv-icon',src:'https://awk.tw/assets/images/viv-badge.png'}):''#" \
 	vendor/flarum/core/js/dist/forum.js
 
 # 顯示發帖人 UA
