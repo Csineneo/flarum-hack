@@ -23,6 +23,7 @@
 - 新增 UID 至 PostStream
 - 相對時間替換為絕對時間
 - 使用中文數位記法
+- 固定貼不顯示預覽
 - 首頁節點列表不顯示次節點
 - 啟用 flarum/pusher 後不隱藏刷新按鈕
 - 自定義 [BBCode](https://github.com/Csineneo/vivaldi-club-bbcode)

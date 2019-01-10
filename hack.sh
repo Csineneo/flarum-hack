@@ -31,7 +31,6 @@ echo "
 mv vendor/flarum/core/src/Api/JsonApiResponse.php vendor/flarum/core/src/Api/JsonApiResponse.php.ori
 wget -qO vendor/flarum/core/src/Api/JsonApiResponse.php "https://raw.githubusercontent.com/Csineneo/flarum-hack/master/JsonApiResponse.php"
 
-
 # 允許註冊中文名
 sed -i "s#a-z0-9_-#-_a-z0-9\\\x7f-\\\xff#" \
   vendor/flarum/core/src/User/UserValidator.php
@@ -124,6 +123,10 @@ sed -i 's#o.splice(0,3).forEach(s),##' \
 # 啟用 Pusher 後不隱藏刷新按鈕
 sed -i 's#Object(o.extend)(p.a.prototype,"actionItems",function(e){e.remove("refresh")}),##' \
   vendor/flarum/pusher/js/dist/forum.js
+
+# 固定貼不顯示預覽
+sed -i "/'includeFirstPost'/d" \
+	vendor/flarum/sticky/src/Listener/AddApiAttributes.php
 
 composer require csineneo/lang-traditional-chinese
 composer require csineneo/lang-simplified-chinese
