@@ -30,6 +30,8 @@
 - 支援 vivaldi:// scheme
 - 透過 Vivaldi PO 文享專屬 banner
 - 顯示發帖人 UA
+- 確保 antoinefr/flarum-ext-money 與 reflar/level-ranks 的計算方式保持一致
+- 調整 reflar/level-ranks 升級經驗算法為 log(n)
 
 ### 演示站點
 
