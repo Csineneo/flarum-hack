@@ -69,12 +69,14 @@ input.FormControl { color: #998f66 !important; }
 small { color: transparent; font-size: 7px; line-height: 1em; width: 100%; margin-top: 20px; word-break: break-all; clear: both; display: block; overflow: hidden; text-overflow: ellipsis; white-space: pre-wrap; }
 small:hover { color: #f3f; }
 #footer { margin: 1em auto; padding-top: 3em; text-align: center; color: #7c7c7c; width: 61.8%;}
-.viv-icon { float: right; }
+.viv-icon { float: right; width: 150px; box-shadow: 0 0 1px #ccc; }
 .tofu-snapshot { margin-bottom: 2em; padding: 12px 16px; color: #ad6c00; background: #fff2ae; line-height: 1.5; border-radius: 4px; }
 .Badge--group--10 { display: none !important; }
-.item-terminalPost { font-size: 13px; }
+.DiscussionList-loadMore .Button { width: 100%; }
 .item-discussion-views { width: 33px; margin-right: -70px; }
 .item-discussion-views::before { margin-left: -22px; }
+.item-terminalPost { font-size: 13px; }
+.item-money:before { content: "\f530"; font-family: FAS; }
 .Post { padding-bottom: 3px; }
 .Post-footer { margin-bottom: 0; }
 .Post-mentionedBy-preview { width: 640px !important; }
@@ -82,33 +84,19 @@ small:hover { color: #f3f; }
 .TagsPage .item-flagrow-ad { display: none !important; }
 
 /* Dark Mode */
+body.dark .Dropdown-menu > li > a:hover,
+body.dark .Dropdown-menu > li > button:hover,
+{ color: #CB1B45 }
+body.dark .Dropdown-menu > li > a,
+body.dark .Dropdown-menu > li > button,
+body.dark .DiscussionListItem-count
+{ background-color: transparent !important; }
 body.dark .DiscussionListItem-title { color: #ccc; }
 
 /* Tag Icon */
-.TagHero .Hero-title:before, .TagLabel > span:before
-{
-  height: 22px;
-  margin-right: 0.3em;
-  display: inline-block;
-  font-family: FAS;
-  font-size: 85%;
-  text-rendering: auto;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
+.TagHero .Hero-title:before, .TagLabel > span:before { height: 22px; margin-right: 0.3em; display: inline-block; font-family: FAS; font-size: 85%; text-rendering: auto; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
 .TagLinkButton > .TagIcon { width: 18px !important; height: 18px !important; }
-.TagLinkButton > span:before {
-  color: #fff;
-  height: 22px;
-  display: block;
-  font-family: FAS;
-  font-size: 85%;
-  text-rendering: auto;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
+.TagLinkButton > span:before { color: #fff; height: 22px; display: block; font-family: FAS; font-size: 85%; text-rendering: auto; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
 /* vivaldi */
 .TagHero[style*='rgb(203, 27, 69)'] .Hero-title:before,
 .TagLabel[style*='rgb(203, 27, 69)'] > span:before,
