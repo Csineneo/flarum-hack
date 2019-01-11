@@ -2,10 +2,7 @@
 
 ### 需求
 
-- Flarum v0.1.0-beta.8 及更新版本
-- csineneo/lang-traditional-chinese
-- csineneo/lang-simplified-chinese
-- csineneo/vivaldi-club-bbcode
+- Flarum v0.1.0-beta.8.1
 
 ### HACK
 
@@ -28,10 +25,10 @@
 - 啟用 flarum/pusher 後不隱藏刷新按鈕
 - 自定義 [BBCode](https://github.com/Csineneo/vivaldi-club-bbcode)
 - 支援 vivaldi:// scheme
-- 透過 Vivaldi PO 文享專屬 banner
+- 透過 Vivaldi PO 文享專屬標記
 - 顯示發帖人 UA
-- 確保 antoinefr/flarum-ext-money 與 reflar/level-ranks 的計算方式保持一致
-- 調整 reflar/level-ranks 升級經驗算法為 log(n)
+- 確保 [antoinefr/flarum-ext-money](https://github.com/antoinefr/flarum-ext-money) 與 [reflar/level-ranks](https://github.com/reflar/level-ranks) 的計算方式保持一致
+- 調整 [reflar/level-ranks](https://github.com/reflar/level-ranks) 升級經驗算法為 log(n)
 
 ### 演示站點
 
