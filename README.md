@@ -20,13 +20,14 @@
 - 新增 UID 至 PostStream
 - 相對時間替換為絕對時間
 - 使用中文數位記法
-- 固定貼不顯示預覽
+- 固頂貼不顯示預覽
+- 頭像增加彩色邊框
 - 首頁節點列表不顯示次節點
-- 啟用 flarum/pusher 後不隱藏刷新按鈕
-- 自定義 [BBCode](https://github.com/Csineneo/vivaldi-club-bbcode)
-- 支援 vivaldi:// scheme
+- 顯示發帖人 UserAgent 於貼文底部
 - 透過 Vivaldi PO 文享專屬標記
-- 顯示發帖人 UA
+- 支援 vivaldi:// scheme
+- 啟用 [flarum/pusher](https://github.com/flarum/pusher) 後不隱藏刷新按鈕
+- 新增 [BBCode](https://github.com/Csineneo/vivaldi-club-bbcode)
 - 確保 [antoinefr/flarum-ext-money](https://github.com/antoinefr/flarum-ext-money) 與 [reflar/level-ranks](https://github.com/reflar/level-ranks) 的計算方式保持一致
 - 調整 [reflar/level-ranks](https://github.com/reflar/level-ranks) 升級經驗算法為 log(n)
 

@@ -120,6 +120,10 @@ sed -i 's#t>=1e3#t>=1e4#; s#(t\/1e3)#(t/1e4)#; s#kilo_text#ten_kilo_text#' \
   vendor/flarum/core/js/dist/admin.js \
   vendor/flarum/core/js/dist/forum.js
 
+# 為頭像增加彩色邊框
+sed -i -r 's#"(}\),Object\(Ot)# uid-"+e.id(),style:"border:solid "+e.color()\1#' \
+	vendor/flarum/core/js/dist/forum.js
+
 # 首頁節點列表不顯示次節點
 sed -i 's#o.splice(0,3).forEach(s),##' \
   vendor/flarum/tags/js/dist/forum.js
@@ -128,7 +132,7 @@ sed -i 's#o.splice(0,3).forEach(s),##' \
 sed -i 's#Object(o.extend)(p.a.prototype,"actionItems",function(e){e.remove("refresh")}),##' \
   vendor/flarum/pusher/js/dist/forum.js
 
-# 固定貼不顯示預覽
+#	固頂貼不顯示預覽
 sed -i "/'includeFirstPost'/d" \
 	vendor/flarum/sticky/src/Listener/AddApiAttributes.php
 
