@@ -147,6 +147,16 @@ sed -i -r 's#21.*(t.discussionCount)#t.commentCount()+5*\1#' \
 sed -i 's#r\/135),s=100\/135\*(r-135\*n)#Math.log(r)),s=Math.log(r).toFixed(4).split(".")[1]/100#' \
 	vendor/reflar/level-ranks/js/dist/forum.js
 
+# 客制 flagrow/upload 圖片模板
+echo '<figure class="upl-image-tpl" data-uuid="{@uuid}">
+  <img src="{@url}" alt="{SIMPLETEXT1}" style="width:100%">
+  <figcaption>
+    <span class="upl-image-title"><i class="far fa-file-image"></i>{SIMPLETEXT1}</span>
+    <span class="upl-image-size"><i class="fas fa-cloud-download-alt"></i>{SIMPLETEXT2}</span>
+    <span class="upl-image-link"><a href="{@url}" title="{SIMPLETEXT1}" target='_blank'><i class="fas fa-external-link-alt"></i></a></span>
+  </figcaption>
+</figure>' > vendor/flagrow/upload/resources/templates/image.blade.php
+
 # 簡繁語言包及 BBCode
 composer require csineneo/lang-traditional-chinese
 composer require csineneo/lang-simplified-chinese
