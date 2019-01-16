@@ -117,6 +117,8 @@ sed -i 's#Object(o.extend)(p.a.prototype,"actionItems",function(e){e.remove("ref
 #	固頂貼不顯示預覽
 sed -i "/'includeFirstPost'/d" \
 	vendor/flarum/sticky/src/Listener/AddApiAttributes.php
+sed -i 's#Object(f.extend)(S.a.prototype,"requestParams",function(t){t.include.push("firstPost")}),##' \
+	vendor/flarum/sticky/js/dist/forum.js
 
 # 確保 antoinefr/flarum-ext-money 與 reflar/level-ranks 的計算方式保持一致
 # n = 5*discussionCount + commentCount
