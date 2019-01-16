@@ -99,6 +99,8 @@ sed -i "s#-2592e6#-864e5#; s#D MMM#LLLL#; s#MMM 'YY#LLLL#" \
 sed -i 's#t>=1e3#t>=1e4#; s#(t\/1e3)#(t/1e4)#; s#kilo_text#ten_kilo_text#' \
   vendor/flarum/core/js/dist/admin.js \
   vendor/flarum/core/js/dist/forum.js
+sed -i '/kilo_text/a\      ten_kilo_text: 0K' \
+	vendor/flarum/lang-english/locale/core.yml
 
 # 為頭像增加彩色邊框
 sed -i -r 's#"(}\),Object\(Ot)# uid-"+e.id(),style:"border:solid "+e.color()\1#' \
