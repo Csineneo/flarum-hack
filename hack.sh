@@ -131,7 +131,7 @@ sed -i 's#r\/135),s=100\/135\*(r-135\*n)#Math.log(r)),s=Math.log(r).toFixed(4).s
 
 # 客制 flagrow/upload 圖片模板
 echo '<figure class="upl-image-tpl" data-uuid="{@uuid}">
-  <img src="{@url}" alt="{SIMPLETEXT1}" style="width:100%">
+  <img src="{@url}" alt="{SIMPLETEXT1}">
   <figcaption>
     <span class="upl-image-title"><i class="far fa-file-image"></i>{SIMPLETEXT1}</span>
     <span class="upl-image-size"><i class="fas fa-cloud-download-alt"></i>{SIMPLETEXT2}</span>
