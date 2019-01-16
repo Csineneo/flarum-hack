@@ -93,7 +93,10 @@ sed -i -r 's#(=i.contentType)#\1(),u["user-id"]=i.user().id#' \
 
 # 以絕對時間顯示
 sed -i "s#-2592e6#-864e5#; s#D MMM#LLLL#; s#MMM 'YY#LLLL#" \
-  vendor/flarum/core/js/dist/forum.js
+  vendor/flarum/core/js/dist/forum.js \
+	vendor/flarum/core/js/dist/admin.js
+sed -i 's#D MMM#L#' \
+	vendor/flarum/statistics/js/dist/admin.js
 
 # 使用中文數位記法
 sed -i 's#t>=1e3#t>=1e4#; s#(t\/1e3)#(t/1e4)#; s#kilo_text#ten_kilo_text#' \
