@@ -29,7 +29,8 @@
 - 啟用 [flarum/pusher](https://github.com/flarum/pusher) 後不隱藏刷新按鈕
 - 新增 [BBCode](https://github.com/Csineneo/vivaldi-club-bbcode)
 - 確保 [antoinefr/flarum-ext-money](https://github.com/antoinefr/flarum-ext-money) 與 [reflar/level-ranks](https://github.com/reflar/level-ranks) 的計算方式保持一致
-- 調整 [reflar/level-ranks](https://github.com/reflar/level-ranks) 升級經驗算法為 log(n)
+- 更改 [reflar/level-ranks](https://github.com/reflar/level-ranks) 升級經驗算法為 log(n)
+- 更改 [flagrow/sitemap](https://github.com/flagrow/sitemap) 連結格式
 - 客制 [flagrow/upload](https://github.com/flagrow/upload) 圖片模板
 
 ### 演示站點

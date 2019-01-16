@@ -130,9 +130,13 @@ sed -i -r 's#(money\]",)(this.props.user.data.attributes.)money#\1\2discussionCo
 sed -i -r 's#21.*(t.discussionCount)#t.commentCount()+5*\1#' \
 	vendor/reflar/level-ranks/js/dist/forum.js
 
-# 調整 reflar/level-ranks 升級經驗算法為 log(n)
+# 更改 reflar/level-ranks 升級經驗算法為 log(n)
 sed -i 's#r\/135),s=100\/135\*(r-135\*n)#Math.log(r)),s=Math.log(r).toFixed(4).split(".")[1]/100#' \
 	vendor/reflar/level-ranks/js/dist/forum.js
+
+# 更改 flagrow/sitemap 連結格式，移除 slug，使用 UID 訪問用戶頁面
+sed -i "s# . '-' . \$discussion->slug##; s#username#id#" \
+	vendor/flagrow/sitemap/src/SitemapGenerator.php
 
 # 客制 flagrow/upload 圖片模板
 echo '<figure class="upl-image-tpl" data-uuid="{@uuid}">
