@@ -3,28 +3,8 @@
 # 用戶端語言識別
 sed -i '/private function getDefaultLocale/, $d' \
   vendor/flarum/core/src/Locale/LocaleServiceProvider.php
-echo "
-    private function getDefaultLocale(): string
-    {
-        if(isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
-            preg_match('/^([a-z\-]+)/i', $_SERVER['HTTP_ACCEPT_LANGUAGE'], $matches);
-            $lang = strtolower($matches[1]);
-        }
-        switch ($lang) {
-            case 'zh-tw':
-            case 'zh-hk':
-            case 'zh':
-                return 'zh-hant';
-                break;
-            case 'zh-cn':
-            case 'zh-sg':
-                return 'zh-hans';
-                break;
-            default:
-								return 'en';
-        }
-    }
-}" >> vendor/flarum/core/src/Locale/LocaleServiceProvider.php
+mv vendor/flarum/core/src/Locale/LocaleServiceProvider.php vendor/flarum/core/src/Locale/LocaleServiceProvider.php.ori
+wget -qO vendor/flarum/core/src/Locale/LocaleServiceProvider.php "https://raw.githubusercontent.com/Csineneo/flarum-hack/master/LocaleServiceProvider.php"
 
 # 簡繁自動轉換
 # https://vivaldi.club/d/793/10
