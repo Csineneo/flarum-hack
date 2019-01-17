@@ -95,7 +95,7 @@ sed -i -r 's#(=i.contentType)#\1(),u["user-id"]=i.user().id#' \
 sed -i "s#-2592e6#-864e5#; s#D MMM#LLLL#; s#MMM 'YY#LLLL#" \
   vendor/flarum/core/js/dist/forum.js \
 	vendor/flarum/core/js/dist/admin.js
-sed -i 's#D MMM#L#' \
+sed -i 's#D MMM#L#g' \
 	vendor/flarum/statistics/js/dist/admin.js
 
 # 使用中文數位記法
