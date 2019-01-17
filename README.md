@@ -32,6 +32,7 @@
 - 更改 [reflar/level-ranks](https://github.com/reflar/level-ranks) 升級經驗算法為 log(n)
 - 更改 [flagrow/sitemap](https://github.com/flagrow/sitemap) 連結格式
 - 客制 [flagrow/upload](https://github.com/flagrow/upload) 圖片模板
+- 更改 font-awesome 加載位置
 
 ### 演示站點
 

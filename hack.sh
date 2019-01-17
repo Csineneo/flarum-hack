@@ -117,7 +117,7 @@ sed -i 's#o.splice(0,3).forEach(s),##' \
 sed -i 's#Object(o.extend)(p.a.prototype,"actionItems",function(e){e.remove("refresh")}),##' \
   vendor/flarum/pusher/js/dist/forum.js
 
-#	固頂貼不顯示預覽
+# 固頂貼不顯示預覽
 sed -i "/'includeFirstPost'/d" \
 	vendor/flarum/sticky/src/Listener/AddApiAttributes.php
 sed -i 's#Object(f.extend)(S.a.prototype,"requestParams",function(t){t.include.push("firstPost")}),##' \
@@ -151,6 +151,10 @@ echo '<figure class="upl-image-tpl" data-uuid="{@uuid}">
     <span class="upl-image-link"><a href="{@url}" title="{SIMPLETEXT1}" target='_blank'><i class="fas fa-external-link-alt"></i></a></span>
   </figcaption>
 </figure>' > vendor/flagrow/upload/resources/templates/image.blade.php
+
+# 更改 font-awesome 加載位置
+sed -i 's#\./#https://awk.tw/assets/#' \
+	vendor/flarum/core/less/common/common.less
 
 # 簡繁語言包及 BBCode
 composer require csineneo/lang-traditional-chinese
