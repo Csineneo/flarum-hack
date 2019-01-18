@@ -30,8 +30,12 @@ class JsonApiResponse extends JsonResponse {
         $ccconfig = "";
     }
 
-    $cctext = opencc_convert(json_encode($document->jsonSerialize(), 256), $ccconfig);
-    opencc_close($ccconfig);
-    $ccconfig ? parent::__construct(json_decode($cctext), $status, $headers, $encodingOptions) : parent::__construct($document->jsonSerialize(), $status, $headers, $encodingOptions);
+		if ( $ccconfig ) {
+			$cctext = opencc_convert(json_encode($document->jsonSerialize(), 256), $ccconfig);
+			opencc_close($ccconfig);
+			parent::__construct(json_decode($cctext), $status, $headers, $encodingOptions);
+		} else {
+			parent::__construct($document->jsonSerialize(), $status, $headers, $encodingOptions);
+		}
   }
 }
