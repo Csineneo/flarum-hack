@@ -123,6 +123,10 @@ sed -i "/'includeFirstPost'/d" \
 sed -i 's#Object(f.extend)(S.a.prototype,"requestParams",function(t){t.include.push("firstPost")}),##' \
 	vendor/flarum/sticky/js/dist/forum.js
 
+# 更改 font-awesome 加載位置
+sed -i 's#\./#https://awk.tw/assets/#' \
+	vendor/flarum/core/less/common/common.less
+
 # 確保 antoinefr/flarum-ext-money 與 reflar/level-ranks 的計算方式保持一致
 # n = 5*discussionCount + commentCount
 sed -i -r 's#(money\]",)(this.props.user.data.attributes.)money#\1\2discussionCount*5+\2commentCount#' \
@@ -152,9 +156,11 @@ echo '<figure class="upl-image-tpl" data-uuid="{@uuid}">
   </figcaption>
 </figure>' > vendor/flagrow/upload/resources/templates/image.blade.php
 
-# 更改 font-awesome 加載位置
-sed -i 's#\./#https://awk.tw/assets/#' \
-	vendor/flarum/core/less/common/common.less
+# 阻止 flagrow/split 生成 slug
+sed -i 's#-{\$slug}##' \
+	vendor/flagrow/split/src/Posts/DiscussionSplitPost.php
+sed -i 's#-{\$event->discussion->slug}##' \
+	vendor/flagrow/split/src/Listeners/UpdateSplitTitleAfterDiscussionWasRenamed.php
 
 # 簡繁語言包及 BBCode
 composer require csineneo/lang-traditional-chinese

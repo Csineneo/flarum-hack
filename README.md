@@ -26,13 +26,14 @@
 - 顯示發帖人 UserAgent 於貼文底部
 - 透過 Vivaldi PO 文享專屬標記
 - 支援 vivaldi:// scheme
+- 更改 font-awesome 加載位置
 - 啟用 [flarum/pusher](https://github.com/flarum/pusher) 後不隱藏刷新按鈕
 - 新增 [BBCode](https://github.com/Csineneo/vivaldi-club-bbcode)
 - 確保 [antoinefr/flarum-ext-money](https://github.com/antoinefr/flarum-ext-money) 與 [reflar/level-ranks](https://github.com/reflar/level-ranks) 的計算方式保持一致
 - 更改 [reflar/level-ranks](https://github.com/reflar/level-ranks) 升級經驗算法為 log(n)
 - 更改 [flagrow/sitemap](https://github.com/flagrow/sitemap) 連結格式
 - 客制 [flagrow/upload](https://github.com/flagrow/upload) 圖片模板
-- 更改 font-awesome 加載位置
+- 阻止 [flagrow/split](https://github.com/flagrow/split) 生成 slug
 
 ### 演示站點
 
