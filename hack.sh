@@ -5,13 +5,12 @@ GITHUB_ROOT="https://raw.githubusercontent.com/Csineneo/flarum-hack/master"
 # 用戶端語言識別
 sed -i '/private function getDefaultLocale/, $d' \
   vendor/flarum/core/src/Locale/LocaleServiceProvider.php
-mv vendor/flarum/core/src/Locale/LocaleServiceProvider.php vendor/flarum/core/src/Locale/LocaleServiceProvider.php.ori
-wget -qO vendor/flarum/core/src/Locale/LocaleServiceProvider.php "$GITHUB_ROOT/LocaleServiceProvider.php"
+wget -qO "vendor/flarum/core/src/Locale/LocaleServiceProvider.php" \
+	"$GITHUB_ROOT/flarum/core/src/Locale/LocaleServiceProvider.php"
 
 # 簡繁自動轉換
-# https://vivaldi.club/d/793/10
-mv vendor/flarum/core/src/Api/JsonApiResponse.php vendor/flarum/core/src/Api/JsonApiResponse.php.ori
-wget -qO vendor/flarum/core/src/Api/JsonApiResponse.php "$GITHUB_ROOT/JsonApiResponse.php"
+wget -qO "vendor/flarum/core/src/Api/JsonApiResponse.php" \
+	"$GITHUB_ROOT/flarum/core/src/Api/JsonApiResponse.php"
 
 # 允許註冊中文名
 sed -i "s#a-z0-9_-#-_a-z0-9\\\x7f-\\\xff#" \
@@ -152,6 +151,12 @@ sed -i "s# . '-' . \$discussion->slug##; s#username#id#" \
 sed -i 's#kB#KiB#; s#MB#MiB#; s#GB#GiB#; s#TB#TiB#; s#PB#PiB#; s#EB#EiB#; s#ZB#ZiB#; s#YB#YiB#' \
 	vendor/flagrow/upload/src/File.php
 
+# 阻止 flagrow/split 生成 slug
+sed -i 's#-{\$slug}##' \
+	vendor/flagrow/split/src/Posts/DiscussionSplitPost.php
+sed -i 's#-{\$event->discussion->slug}##' \
+	vendor/flagrow/split/src/Listeners/UpdateSplitTitleAfterDiscussionWasRenamed.php
+
 # 客制 flagrow/upload 內容展示模板
 for f in \
 	flagrow/upload/resources/templates/text.blade.php \
@@ -167,11 +172,9 @@ do
 	wget -qO "vendor/$f" "$GITHUB_ROOT/$f"
 done
 
-# 阻止 flagrow/split 生成 slug
-sed -i 's#-{\$slug}##' \
-	vendor/flagrow/split/src/Posts/DiscussionSplitPost.php
-sed -i 's#-{\$event->discussion->slug}##' \
-	vendor/flagrow/split/src/Listeners/UpdateSplitTitleAfterDiscussionWasRenamed.php
+# 客制頁面模板
+wget -qO "vendor/flarum/core/views/frontend/app.blade.php" \
+	"$GITHUB_ROOT/flarum/core/views/frontend/app.blade.php"
 
 # 簡繁語言包及 BBCode
 composer require csineneo/lang-traditional-chinese
