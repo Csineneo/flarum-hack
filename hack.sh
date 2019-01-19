@@ -146,6 +146,10 @@ sed -i -r 's#(placement:")top#\1right#' \
 sed -i "s# . '-' . \$discussion->slug##; s#username#id#" \
 	vendor/flagrow/sitemap/src/SitemapGenerator.php
 
+# 更改 flagrow/upload 文件大小為二進位前綴
+sed -i 's#kB#KiB#; s#MB#MiB#; s#GB#GiB#; s#TB#TiB#; s#PB#PiB#; s#EB#EiB#; s#ZB#ZiB#; s#YB#YiB#' \
+	vendor/flagrow/upload/src/File.php
+
 # 客制 flagrow/upload 圖片模板
 echo '<figure class="upl-image-tpl" data-uuid="{@uuid}">
   <img src="{@url}" alt="{SIMPLETEXT1}">
