@@ -30,6 +30,7 @@
 - 更改 [reflar/level-ranks](https://github.com/reflar/level-ranks) 的計算方式，與 [antoinefr/flarum-ext-money](https://github.com/antoinefr/flarum-ext-money) 保持一致
 - 更改 [reflar/level-ranks](https://github.com/reflar/level-ranks) 升級經驗算法為 log(n)
 - 更改 [flagrow/upload](https://github.com/flagrow/upload) 文件大小為二進位前綴
+- 更改 [flagrow/upload](https://github.com/flagrow/upload) 異常提示，增加 MimeType
 - 更改 [flagrow/sitemap](https://github.com/flagrow/sitemap) 連結格式
 - 阻止 [flarum/pusher](https://github.com/flarum/pusher) 啟用後隱藏刷新按鈕
 - 阻止 [flagrow/split](https://github.com/flagrow/split) 生成 slug

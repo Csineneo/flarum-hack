@@ -151,6 +151,10 @@ sed -i "s# . '-' . \$discussion->slug##; s#username#id#" \
 sed -i 's#kB#KiB#; s#MB#MiB#; s#GB#GiB#; s#TB#TiB#; s#PB#PiB#; s#EB#EiB#; s#ZB#ZiB#; s#YB#YiB#' \
 	vendor/flagrow/upload/src/File.php
 
+# 為異常提示增加 MimeType
+sed -i -r "s#(this type)#\1 ('.\$upload->getClientMimeType().')#" \
+	vendor/flagrow/upload/src/Commands/UploadHandler.php
+
 # 阻止 flagrow/split 生成 slug
 sed -i 's#-{\$slug}##' \
 	vendor/flagrow/split/src/Posts/DiscussionSplitPost.php
