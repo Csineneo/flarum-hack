@@ -34,6 +34,7 @@
 - 更改 [flagrow/sitemap](https://github.com/flagrow/sitemap) 連結格式
 - 阻止 [flarum/pusher](https://github.com/flarum/pusher) 啟用後隱藏刷新按鈕
 - 阻止 [flagrow/split](https://github.com/flagrow/split) 生成 slug
+- 阻止 [fof/secure-https](https://github.com/FriendsOfFlarum/secure-https) 代理 HTTPS 內容
 - 客制 [BBCode](https://github.com/Csineneo/vivaldi-club-bbcode)
 - 客制 [flarum/core](https://github.com/flarum/core) 頁面模板
 - 客制 [flagrow/upload](https://github.com/flagrow/upload) 內容展示模板

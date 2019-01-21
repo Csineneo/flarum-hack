@@ -161,6 +161,12 @@ sed -i 's#-{\$slug}##' \
 sed -i 's#-{\$event->discussion->slug}##' \
 	vendor/flagrow/split/src/Listeners/UpdateSplitTitleAfterDiscussionWasRenamed.php
 
+# 阻止 fof/secure-https 代理 HTTPS 內容，並清理原始碼
+sed -i -e '/proxyUrl.urlencode/d; /proxyUrl/a\\t\t\t\treturn substr(\$attrValue, 0, 5 ) === "http:" ? \$proxyUrl . urlencode(\$attrValue) : \$attrValue;' \
+	vendor/fof/secure-https/src/Listeners/ModifyContentHtml.php
+sed -i "/Apache/, /http/d; s#\$imgurl, -3#strrchr(\$imgurl, '.'), 1#" \
+	vendor/fof/secure-https/src/Api/Controllers/GetImageUrlController.php
+
 # 客制 flagrow/upload 內容展示模板
 for f in \
 	flagrow/upload/resources/templates/text.blade.php \
