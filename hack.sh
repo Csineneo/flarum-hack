@@ -71,6 +71,8 @@ sed -i -r 's#(footerItems\(\).toArray\(\)\)\))#\1,m("small",{className:"ua"},e.p
 	vendor/flarum/core/js/dist/forum.js
 
 # URL 美化，移除 slug
+sed -i '/discussion->slug/d' \
+	vendor/flarum/core/src/Api/Serializer/BasicDiscussionSerializer.php
 sed -i -r 's#(discussion->id).*$#\1#' \
   vendor/flarum/core/views/frontend/content/index.blade.php
 sed -i 's#+(i.trim()?"-"+i:"")##' \
@@ -164,7 +166,7 @@ sed -i 's#-{\$event->discussion->slug}##' \
 # 阻止 fof/secure-https 代理 HTTPS 內容，並清理原始碼
 sed -i -e '/proxyUrl.urlencode/d; /proxyUrl/a\\t\t\t\treturn substr(\$attrValue, 0, 5 ) === "http:" ? \$proxyUrl . urlencode(\$attrValue) : \$attrValue;' \
 	vendor/fof/secure-https/src/Listeners/ModifyContentHtml.php
-sed -i "/Apache/, /http/d; s#\$imgurl, -3#strrchr(\$imgurl, '.'), 1#" \
+sed -i "s#\$imgurl, -3#strrchr(\$imgurl, '.'), 1#" \
 	vendor/fof/secure-https/src/Api/Controllers/GetImageUrlController.php
 
 # 客制 flagrow/upload 內容展示模板
