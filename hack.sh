@@ -75,12 +75,16 @@ sed -i '/discussion->slug/d' \
 	vendor/flarum/core/src/Api/Serializer/BasicDiscussionSerializer.php
 sed -i -r 's#(discussion->id).*$#\1#' \
   vendor/flarum/core/views/frontend/content/index.blade.php
+sed -i '/idWithSlug =/s/\..*$/;/' \
+	vendor/flarum/core/src/Forum/Content/Discussion.php
 sed -i 's#+(i.trim()?"-"+i:"")##' \
   vendor/flarum/core/js/dist/forum.js
 
 # 改為使用 UID 訪問用戶頁面
-sed -i 's#t.route("user",{username:e.username#t.route("user",{username:e.id#' \
+sed -i 's#username:e\.username#username:e.id#g' \
   vendor/flarum/core/js/dist/forum.js
+sed -i 's#e\.username#e.id#g' \
+	vendor/flarum/mentions/js/dist/forum.js
 
 # 允許搜尋長度小於三個字符的 ID
 sed -i 's#length>=3\&#length>=1\&#' \
