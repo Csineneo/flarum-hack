@@ -3,8 +3,6 @@
 GITHUB_ROOT="https://raw.githubusercontent.com/Csineneo/flarum-hack/master"
 
 # 用戶端語言識別
-sed -i '/private function getDefaultLocale/, $d' \
-  vendor/flarum/core/src/Locale/LocaleServiceProvider.php
 wget -qO "vendor/flarum/core/src/Locale/LocaleServiceProvider.php" \
 	"$GITHUB_ROOT/flarum/core/src/Locale/LocaleServiceProvider.php"
 
@@ -18,15 +16,15 @@ sed -i "s#a-z0-9_-#-_a-z0-9\\\x7f-\\\xff#" \
 
 # 支援 @ 中文名
 sed -i "s#a-z0-9_-#-_a-zA-Z0-9\\\x7f-\\\xff#" \
-  vendor/flarum/mentions/src/Listener/FormatPostMentions.php \
-  vendor/flarum/mentions/src/Listener/FormatUserMentions.php
+	vendor/flarum/mentions/src/ConfigureMentions.php
 
 # 取消標題及用戶名最小長度限制
 sed -i 's#min:3#min:1#' \
   vendor/flarum/core/src/User/UserValidator.php \
   vendor/flarum/core/src/Discussion/DiscussionValidator.php
 
-# 取消貼文字數限制
+# 加大貼文字數
+# ALTER TABLE `posts` CHANGE `content` `content` mediumtext COLLATE 'utf8mb4_unicode_ci' NULL COMMENT ' ' AFTER `type`;
 sed -i 's#65535#2147483647#' \
   vendor/flarum/core/src/Post/PostValidator.php
 
@@ -42,32 +40,32 @@ sed -i "/new SchemeList/a\\\t\\t\$this->allowedSchemes[] = 'vivaldi';" \
 sed -i 's#ftp|https#ftp|vivaldi|https#g' \
   vendor/s9e/text-formatter/src/Bundles/Fatdown.php
 
-# 透過 Vivaldi PO 文享專屬 banner
-sed -i -r "s#(t.stopPropagation\(\)}}\)\))#\1,/Vivaldi/.test(t.data.attributes.userAgent)?m('img',{className:'viv-icon',src:'https://awk.tw/assets/images/viv-badge.png'}):''#" \
-	vendor/flarum/core/js/dist/forum.js
-
 # 顯示發帖人 UA
 # SQL: ALTER TABLE tbl_posts ADD user_agent varchar(255);
 sed -i 's#\$ipAddress)#\$ipAddress\, string \$userAgent)#; /->ipAddress/a\\t\t\t\t$this->userAgent = $userAgent;' \
 	vendor/flarum/core/src/Discussion/Command/StartDiscussion.php
-	sed -i -r '/new PostReply/s/(ipAddress)/\1, $userAgent/; /->ipAddress/a\\t\t\t\t$userAgent = $command->userAgent;' \
+sed -i -r '/new PostReply/s/(ipAddress)/\1, $userAgent/; /->ipAddress/a\\t\t\t\t$userAgent = $command->userAgent;' \
 	vendor/flarum/core/src/Discussion/Command/StartDiscussionHandler.php
 sed -i -e '/StartDiscussion/s/)$/, \$userAgent)/' \
-	-e "/ipAddress =/a\\\t\t\t\t\$userAgent = array_get(\$request->getServerParams(), 'HTTP_USER_AGENT', '');" \
+	-e "/ipAddress =/a\\\t\t\t\t\$userAgent = Arr::get(\$request->getServerParams(), 'HTTP_USER_AGENT', '');" \
 	vendor/flarum/core/src/Api/Controller/CreateDiscussionController.php
 sed -i -r 's#(ipAddress = null)#\1, string $userAgent#; /->ipAddress/a\\t\t\t\t$this->userAgent = $userAgent;' \
 	vendor/flarum/core/src/Post/Command/PostReply.php
 sed -i -r 's#(ipAddress)$#\1,#; /ipAddress/a\\t\t\t\t\t\t$command->userAgent' \
 	vendor/flarum/core/src/Post/Command/PostReplyHandler.php
 sed -i -e 's#ipAddress)#ipAddress, $userAgent)#' \
-	-e "/ADDR/a\\\t\t\t\t\$userAgent = array_get(\$request->getServerParams(), 'HTTP_USER_AGENT', '');" \
+	-e "/ADDR/a\\\t\t\t\t\$userAgent = Arr::get(\$request->getServerParams(), 'HTTP_USER_AGENT', '');" \
 	vendor/flarum/core/src/Api/Controller/CreatePostController.php
 sed -i -e '/ip_address/a\\t\t\t\t$post->user_agent = $userAgent;' \
 	-e 's#ipAddress)#ipAddress, $userAgent)#' \
 	vendor/flarum/core/src/Post/CommentPost.php
 sed -i "/contentHtml/a\\\t\t\t\t\t\t\$attributes['userAgent'] = \$post->user_agent;" \
-	vendor/flarum/core/src/Api/Serializer/PostSerializer.php
+	vendor/flarum/core/src/Api/Serializer/BasicPostSerializer.php
 sed -i -r 's#(footerItems\(\).toArray\(\)\)\))#\1,m("small",{className:"ua"},e.props.post.data.attributes.userAgent\)#' \
+	vendor/flarum/core/js/dist/forum.js
+
+# 透過 Vivaldi PO 文享專屬 banner
+sed -i -r "s#(t.stopPropagation\(\)}}\)\))#\1,/Vivaldi/.test(t.data.attributes.userAgent)?m('img',{className:'viv-icon',src:'https://awk.tw/assets/images/viv-badge.png'}):''#" \
 	vendor/flarum/core/js/dist/forum.js
 
 # URL 美化，移除 slug
@@ -83,7 +81,7 @@ sed -i 's#+(i.trim()?"-"+i:"")##' \
 # 改為使用 UID 訪問用戶頁面
 sed -i 's#username:e\.username#username:e.id#g' \
   vendor/flarum/core/js/dist/forum.js
-sed -i 's#e\.username#e.id#g' \
+sed -i 's#username:e\.username#username:e.id#g' \
 	vendor/flarum/mentions/js/dist/forum.js
 
 # 允許搜尋長度小於三個字符的 ID
@@ -150,7 +148,7 @@ sed -i -r 's#(placement:")top#\1right#' \
 	vendor/flarum/core/js/dist/forum.js
 
 # 更改 flagrow/sitemap 連結格式，移除 slug，使用 UID 訪問用戶頁面
-sed -i "s# . '-' . \$discussion->slug##; s#username#id#" \
+sed -i -e "s# . '-' . \$discussion->slug##; s# . '-' . \$page->slug##; s#username#id#" \
 	vendor/flagrow/sitemap/src/SitemapGenerator.php
 
 # 更改 flagrow/upload 文件大小為二進位前綴
@@ -161,14 +159,14 @@ sed -i 's#kB#KiB#; s#MB#MiB#; s#GB#GiB#; s#TB#TiB#; s#PB#PiB#; s#EB#EiB#; s#ZB#Z
 sed -i -r "s#(this type)#\1 ('.\$upload->getClientMimeType().')#" \
 	vendor/flagrow/upload/src/Commands/UploadHandler.php
 
-# 阻止 flagrow/split 生成 slug
+# 阻止 fof/split 生成 slug
 sed -i 's#-{\$slug}##' \
-	vendor/flagrow/split/src/Posts/DiscussionSplitPost.php
+	vendor/fof/split/src/Posts/DiscussionSplitPost.php
 sed -i 's#-{\$event->discussion->slug}##' \
-	vendor/flagrow/split/src/Listeners/UpdateSplitTitleAfterDiscussionWasRenamed.php
+	vendor/fof/split/src/Listeners/UpdateSplitTitleAfterDiscussionWasRenamed.php
 
 # 阻止 fof/secure-https 代理 HTTPS 內容，並清理原始碼
-sed -i -e '/proxyUrl.urlencode/d; /proxyUrl/a\\t\t\t\treturn substr(\$attrValue, 0, 5 ) === "http:" ? \$proxyUrl . urlencode(\$attrValue) : \$attrValue;' \
+sed -i -e '/proxyUrl . urlencode/d; /proxyUrl/a\\t\t\t\treturn substr(\$attrValue, 0, 5 ) === "http:" ? \$proxyUrl . urlencode(\$attrValue) : \$attrValue;' \
 	vendor/fof/secure-https/src/Listeners/ModifyContentHtml.php
 sed -i "s#\$imgurl, -3#strrchr(\$imgurl, '.'), 1#" \
 	vendor/fof/secure-https/src/Api/Controllers/GetImageUrlController.php
