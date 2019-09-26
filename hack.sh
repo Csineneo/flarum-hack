@@ -13,6 +13,8 @@ wget -qO "vendor/flarum/core/src/Api/JsonApiResponse.php" \
 # 允許註冊中文名
 sed -i "s#a-z0-9_-#-_a-z0-9\\\x7f-\\\xff#" \
   vendor/flarum/core/src/User/UserValidator.php
+sed -i 's#regex:.*/iu#regex:/^[-_a-z0-9\x7f-\xff]+$/i#' \
+	vendor/dem13n/nickname-changer/src/Validator/NickNameValidator.php
 
 # 支援 @ 中文名
 sed -i "s#a-z0-9_-#-_a-zA-Z0-9\\\x7f-\\\xff#" \
@@ -21,7 +23,8 @@ sed -i "s#a-z0-9_-#-_a-zA-Z0-9\\\x7f-\\\xff#" \
 # 取消標題及用戶名最小長度限制
 sed -i 's#min:3#min:1#' \
   vendor/flarum/core/src/User/UserValidator.php \
-  vendor/flarum/core/src/Discussion/DiscussionValidator.php
+  vendor/flarum/core/src/Discussion/DiscussionValidator.php \
+	vendor/dem13n/nickname-changer/src/Validator/NickNameValidator.php
 
 # 加大貼文字數
 # ALTER TABLE `posts` CHANGE `content` `content` mediumtext COLLATE 'utf8mb4_unicode_ci' NULL COMMENT ' ' AFTER `type`;
