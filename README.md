@@ -2,7 +2,7 @@
 
 ### 需求
 
-- Flarum v0.1.0-beta.10
+- Flarum v0.1.0-beta.12
 
 ### HACK
 

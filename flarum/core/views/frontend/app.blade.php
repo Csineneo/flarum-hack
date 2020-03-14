@@ -30,6 +30,7 @@
 {!! $head !!}
 <link rel="stylesheet" href="https://awk.tw/assets/css/flarum.ext.css">
 <script type="text/javascript" src="https://awk.tw/assets/js/webpjs-0.0.2.min.js"></script>
+<script type="text/javascript" src="https://awk.tw/assets/js/stay_standalone.js"></script>
 <script type="text/javascript">
   var _paq = _paq || [];
   /* tracker methods like "setCustomDimension" should be called before "trackPageView" */

@@ -2,6 +2,21 @@
 
 GITHUB_ROOT="https://raw.githubusercontent.com/Csineneo/flarum-hack/master"
 
+# 簡繁語言包及 BBCode
+composer require csineneo/lang-traditional-chinese
+composer require csineneo/lang-simplified-chinese
+composer require csineneo/vivaldi-club-bbcode
+
+# 其他
+composer require dem13n/nickname-changer
+composer require antoinefr/flarum-ext-money
+composer require reflar/level-ranks
+composer require flagrow/sitemap
+composer require fof/upload
+composer require fof/split
+composer require fof/secure-https
+
+
 # 用戶端語言識別
 wget -qO "vendor/flarum/core/src/Locale/LocaleServiceProvider.php" \
 	"$GITHUB_ROOT/flarum/core/src/Locale/LocaleServiceProvider.php"
@@ -13,8 +28,6 @@ wget -qO "vendor/flarum/core/src/Api/JsonApiResponse.php" \
 # 允許註冊中文名
 sed -i "s#a-z0-9_-#-_a-z0-9\\\x7f-\\\xff#" \
   vendor/flarum/core/src/User/UserValidator.php
-sed -i 's#regex:.*/iu#regex:/^[-_a-z0-9\x7f-\xff]+$/i#' \
-	vendor/dem13n/nickname-changer/src/Validator/NickNameValidator.php
 
 # 支援 @ 中文名
 sed -i "s#a-z0-9_-#-_a-zA-Z0-9\\\x7f-\\\xff#" \
@@ -23,8 +36,7 @@ sed -i "s#a-z0-9_-#-_a-zA-Z0-9\\\x7f-\\\xff#" \
 # 取消標題及用戶名最小長度限制
 sed -i 's#min:3#min:1#' \
   vendor/flarum/core/src/User/UserValidator.php \
-  vendor/flarum/core/src/Discussion/DiscussionValidator.php \
-	vendor/dem13n/nickname-changer/src/Validator/NickNameValidator.php
+  vendor/flarum/core/src/Discussion/DiscussionValidator.php
 
 # 加大貼文字數
 # ALTER TABLE `posts` CHANGE `content` `content` mediumtext COLLATE 'utf8mb4_unicode_ci' NULL COMMENT ' ' AFTER `type`;
@@ -39,7 +51,7 @@ sed -i -r "s#(isFlooding = )#\1\$actor->id == '1' ? false : #" \
 sed -i "/Autoemail/i\\\t\\t\$configurator->urlConfig->allowScheme('vivaldi');" \
   vendor/s9e/text-formatter/src/Configurator/Bundles/Fatdown.php
 sed -i "/new SchemeList/a\\\t\\t\$this->allowedSchemes[] = 'vivaldi';" \
-  vendor/s9e/text-formatter/src/Configurator.php
+	vendor/s9e/text-formatter/src/Configurator/UrlConfig.php
 sed -i 's#ftp|https#ftp|vivaldi|https#g' \
   vendor/s9e/text-formatter/src/Bundles/Fatdown.php
 
@@ -49,7 +61,7 @@ sed -i 's#\$ipAddress)#\$ipAddress\, string \$userAgent)#; /->ipAddress/a\\t\t\t
 	vendor/flarum/core/src/Discussion/Command/StartDiscussion.php
 sed -i -r '/new PostReply/s/(ipAddress)/\1, $userAgent/; /->ipAddress/a\\t\t\t\t$userAgent = $command->userAgent;' \
 	vendor/flarum/core/src/Discussion/Command/StartDiscussionHandler.php
-sed -i -e '/StartDiscussion/s/)$/, \$userAgent)/' \
+sed -i -e '/new StartDiscussion/s/)$/, \$userAgent)/' \
 	-e "/ipAddress =/a\\\t\t\t\t\$userAgent = Arr::get(\$request->getServerParams(), 'HTTP_USER_AGENT', '');" \
 	vendor/flarum/core/src/Api/Controller/CreateDiscussionController.php
 sed -i -r 's#(ipAddress = null)#\1, string $userAgent#; /->ipAddress/a\\t\t\t\t$this->userAgent = $userAgent;' \
@@ -68,8 +80,8 @@ sed -i -r 's#(footerItems\(\).toArray\(\)\)\))#\1,m("small",{className:"ua"},e.p
 	vendor/flarum/core/js/dist/forum.js
 
 # 透過 Vivaldi PO 文享專屬 banner
-sed -i -r "s#(t.stopPropagation\(\)}}\)\))#\1,/Vivaldi/.test(t.data.attributes.userAgent)?m('img',{className:'viv-icon',src:'https://awk.tw/assets/images/viv-badge.png'}):''#" \
-	vendor/flarum/core/js/dist/forum.js
+#sed -i -r "s#(t.stopPropagation\(\)}}\)\))#\1,/Vivaldi/.test(t.data.attributes.userAgent)?m('img',{className:'viv-icon',src:'https://awk.tw/assets/images/viv-badge.png'}):''#" \
+#	vendor/flarum/core/js/dist/forum.js
 
 # URL 美化，移除 slug
 sed -i '/discussion->slug/d' \
@@ -83,8 +95,7 @@ sed -i 's#+(i.trim()?"-"+i:"")##' \
 
 # 改為使用 UID 訪問用戶頁面
 sed -i 's#username:e\.username#username:e.id#g' \
-  vendor/flarum/core/js/dist/forum.js
-sed -i 's#username:e\.username#username:e.id#g' \
+  vendor/flarum/core/js/dist/forum.js \
 	vendor/flarum/mentions/js/dist/forum.js
 
 # 允許搜尋長度小於三個字符的 ID
@@ -122,29 +133,29 @@ sed -i 's#o.splice(0,3).forEach(s),##' \
   vendor/flarum/tags/js/dist/forum.js
 
 # 啟用 Pusher 後不隱藏刷新按鈕
-sed -i 's#Object(o.extend)(p.a.prototype,"actionItems",function(e){e.remove("refresh")}),##' \
+sed -i 's#Object(o.extend)(p.a.prototype,"actionItems",(function(e){e.remove("refresh")})),##' \
   vendor/flarum/pusher/js/dist/forum.js
 
 # 固頂貼不顯示預覽
 sed -i "/'includeFirstPost'/d" \
 	vendor/flarum/sticky/src/Listener/AddApiAttributes.php
-sed -i 's#Object(f.extend)(S.a.prototype,"requestParams",function(t){t.include.push("firstPost")}),##' \
+sed -i 's#Object(f.extend)(S.a.prototype,"requestParams",(function(t){t.include.push("firstPost")})),##' \
 	vendor/flarum/sticky/js/dist/forum.js
 
 # 更改 font-awesome 加載位置
 sed -i 's#\./#https://awk.tw/assets/#' \
 	vendor/flarum/core/less/common/common.less
 
-# 確保 antoinefr/flarum-ext-money 與 reflar/level-ranks 的計算方式保持一致
-# n = 5*discussionCount + commentCount
-sed -i -r 's#(money\]",)(this.props.user.data.attributes.)money#\1\2discussionCount*5+\2commentCount#' \
-	vendor/antoinefr/flarum-ext-money/js/dist/forum.js
-sed -i -r 's#21.*(t.discussionCount)#t.commentCount()+5*\1#' \
-	vendor/reflar/level-ranks/js/dist/forum.js
-
 # 更改 reflar/level-ranks 升級經驗算法為 log(n)
 sed -i 's#r\/135),s=100\/135\*(r-135\*n)#Math.log(r)),s=Math.log(r).toFixed(4).split(".")[1]/100#' \
 	vendor/reflar/level-ranks/js/dist/forum.js
+
+# 確保 antoinefr/flarum-ext-money 與 reflar/level-ranks 的計算方式一致
+# n = 5*discussionCount + commentCount
+sed -i -r 's#21.*(t.discussionCount)#t.commentCount()+5*\1#' \
+	vendor/reflar/level-ranks/js/dist/forum.js
+sed -i -r 's#(money\]",)(this.props.user.data.attributes.)money#\1\2discussionCount*5+\2commentCount#g' \
+	vendor/antoinefr/flarum-ext-money/js/dist/forum.js
 
 # 使得 tooltip 在滑鼠右側彈出避免遮擋
 sed -i -r 's#(placement:")top#\1right#' \
@@ -154,13 +165,13 @@ sed -i -r 's#(placement:")top#\1right#' \
 sed -i -e "s# . '-' . \$discussion->slug##; s# . '-' . \$page->slug##; s#username#id#" \
 	vendor/flagrow/sitemap/src/SitemapGenerator.php
 
-# 更改 flagrow/upload 文件大小為二進位前綴
+# 更改 fof/upload 文件大小為二進位前綴
 sed -i 's#kB#KiB#; s#MB#MiB#; s#GB#GiB#; s#TB#TiB#; s#PB#PiB#; s#EB#EiB#; s#ZB#ZiB#; s#YB#YiB#' \
-	vendor/flagrow/upload/src/File.php
+	vendor/fof/upload/src/File.php
 
 # 為異常提示增加 MimeType
 sed -i -r "s#(this type)#\1 ('.\$upload->getClientMimeType().')#" \
-	vendor/flagrow/upload/src/Commands/UploadHandler.php
+	vendor/fof/upload/src/Commands/UploadHandler.php
 
 # 阻止 fof/split 生成 slug
 sed -i 's#-{\$slug}##' \
@@ -174,17 +185,17 @@ sed -i -e '/proxyUrl . urlencode/d; /proxyUrl/a\\t\t\t\treturn substr(\$attrValu
 sed -i "s#\$imgurl, -3#strrchr(\$imgurl, '.'), 1#" \
 	vendor/fof/secure-https/src/Api/Controllers/GetImageUrlController.php
 
-# 客制 flagrow/upload 內容展示模板
+# 客制 fof/upload 內容展示模板
 for f in \
-	flagrow/upload/resources/templates/text.blade.php \
-	flagrow/upload/resources/templates/image.blade.php \
-	flagrow/upload/resources/templates/audio.blade.php \
-	flagrow/upload/resources/templates/video.blade.php \
-	flagrow/upload/src/Templates/AudioTemplate.php \
-	flagrow/upload/src/Templates/VideoTemplate.php \
-	flagrow/upload/src/Templates/ImageTemplate.php \
-	flagrow/upload/src/Templates/TextTemplate.php \
-	flagrow/upload/src/Providers/DownloadProvider.php
+	fof/upload/resources/templates/text.blade.php \
+	fof/upload/resources/templates/image.blade.php \
+	fof/upload/resources/templates/audio.blade.php \
+	fof/upload/resources/templates/video.blade.php \
+	fof/upload/src/Templates/AudioTemplate.php \
+	fof/upload/src/Templates/VideoTemplate.php \
+	fof/upload/src/Templates/ImageTemplate.php \
+	fof/upload/src/Templates/TextTemplate.php \
+	fof/upload/src/Providers/DownloadProvider.php
 do
 	wget -qO "vendor/$f" "$GITHUB_ROOT/$f"
 done
@@ -193,7 +204,3 @@ done
 wget -qO "vendor/flarum/core/views/frontend/app.blade.php" \
 	"$GITHUB_ROOT/flarum/core/views/frontend/app.blade.php"
 
-# 簡繁語言包及 BBCode
-composer require csineneo/lang-traditional-chinese
-composer require csineneo/lang-simplified-chinese
-composer require csineneo/vivaldi-club-bbcode
