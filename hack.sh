@@ -173,6 +173,10 @@ sed -i 's#kB#KiB#; s#MB#MiB#; s#GB#GiB#; s#TB#TiB#; s#PB#PiB#; s#EB#EiB#; s#ZB#Z
 sed -i -r "s#(this type)#\1 ('.\$upload->getClientMimeType().')#" \
 	vendor/fof/upload/src/Commands/UploadHandler.php
 
+# 阻止 amaurycarrade/flarum-ext-syndication 生成 slug
+sed -i "s# . '-' . \$discussion->attributes->slug##" \
+	vendor/amaurycarrade/flarum-ext-syndication/src/Controller/DiscussionsActivityFeedController.php
+
 # 阻止 fof/split 生成 slug
 sed -i 's#-{\$slug}##' \
 	vendor/fof/split/src/Posts/DiscussionSplitPost.php
