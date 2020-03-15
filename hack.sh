@@ -192,13 +192,12 @@ sed -i "s#\$imgurl, -3#strrchr(\$imgurl, '.'), 1#" \
 
 # 客制 fof/upload 內容展示模板
 for f in \
-	fof/upload/resources/templates/text.blade.php \
 	fof/upload/resources/templates/image.blade.php \
 	fof/upload/resources/templates/audio.blade.php \
 	fof/upload/resources/templates/video.blade.php \
+	fof/upload/resources/templates/text.blade.php \
 	fof/upload/src/Templates/AudioTemplate.php \
 	fof/upload/src/Templates/VideoTemplate.php \
-	fof/upload/src/Templates/ImageTemplate.php \
 	fof/upload/src/Templates/TextTemplate.php \
 	fof/upload/src/Providers/DownloadProvider.php
 do

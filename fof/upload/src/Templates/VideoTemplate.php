@@ -1,6 +1,6 @@
 <?php
 
-namespace Flagrow\Upload\Templates;
+namespace FoF\Upload\Templates;
 
 class VideoTemplate extends AbstractTemplate
 {
@@ -14,7 +14,7 @@ class VideoTemplate extends AbstractTemplate
      */
     public function name()
     {
-				return 'MP4 Video';
+        return 'Video';
     }
 
     /**
@@ -22,7 +22,7 @@ class VideoTemplate extends AbstractTemplate
      */
     public function description()
     {
-				return 'MP4 Video';
+        return 'MP4 Video Template';
     }
 
     /**
@@ -32,7 +32,7 @@ class VideoTemplate extends AbstractTemplate
      */
     public function template()
     {
-        return $this->getView('flagrow.download.templates::video');
+        return $this->getView('fof-upload.templates::video');
     }
 
     /**

@@ -1,6 +1,6 @@
 <?php
 
-namespace Flagrow\Upload\Templates;
+namespace FoF\Upload\Templates;
 
 class AudioTemplate extends AbstractTemplate
 {
@@ -14,7 +14,7 @@ class AudioTemplate extends AbstractTemplate
      */
     public function name()
     {
-        return 'MP3 Audio';
+        return 'Audio';
     }
 
     /**
@@ -22,7 +22,7 @@ class AudioTemplate extends AbstractTemplate
      */
     public function description()
     {
-        return 'MP3 Audio';
+        return 'MP3 Audio Template';
     }
 
     /**
@@ -32,7 +32,7 @@ class AudioTemplate extends AbstractTemplate
      */
     public function template()
     {
-        return $this->getView('flagrow.download.templates::audio');
+        return $this->getView('fof-upload.templates::audio');
     }
 
     /**

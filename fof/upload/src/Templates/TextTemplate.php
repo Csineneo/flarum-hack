@@ -1,6 +1,6 @@
 <?php
 
-namespace Flagrow\Upload\Templates;
+namespace FoF\Upload\Templates;
 
 class TextTemplate extends AbstractTemplate
 {
@@ -14,7 +14,7 @@ class TextTemplate extends AbstractTemplate
      */
     public function name()
     {
-				return 'Plain Text';
+        return 'Text';
     }
 
     /**
@@ -22,7 +22,7 @@ class TextTemplate extends AbstractTemplate
      */
     public function description()
     {
-				return 'Plain Text';
+        return 'Plain text Template';
     }
 
     /**
@@ -32,7 +32,7 @@ class TextTemplate extends AbstractTemplate
      */
     public function template()
     {
-        return $this->getView('flagrow.download.templates::text');
+        return $this->getView('fof-upload.templates::text');
     }
 
     /**
