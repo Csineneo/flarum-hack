@@ -175,6 +175,7 @@ sed -i -r "s#(this type)#\1 ('.\$upload->getClientMimeType().')#" \
 
 # 阻止 amaurycarrade/flarum-ext-syndication 生成 slug
 sed -i "s# . '-' . \$discussion->attributes->slug##" \
+	vendor/amaurycarrade/flarum-ext-syndication/src/Controller/DiscussionFeedController.php \
 	vendor/amaurycarrade/flarum-ext-syndication/src/Controller/DiscussionsActivityFeedController.php
 
 # 阻止 fof/split 生成 slug
